@@ -1,3 +1,4 @@
+
 ## Criar instância
 
 **Permissão para {file}.pem key file:**
@@ -203,4 +204,103 @@ Se você conseguiu acessar o Tomcat com sucesso, agora é um bom momento para ha
 
 ```
 sudo systemctl enable tomcat
+```
+
+## Instalação do MySql
+
+O  [MySQL](https://www.mysql.com/)  é um sistema de gerenciamento de banco de dados de código aberto. Ele implementa o modelo relacional e utiliza a linguagem SQL (Structured Query Language) para gerenciar seus dados.
+
+Este tutorial abordará como instalar a versão 8 do MySQL em um servidor Ubuntu. Ao completá-lo, você terá um banco de dados relacional funcionando que pode ser utilizado para desenvolver seu próximo site ou aplicativo.
+
+### Passo 1 — Instalando o MySQL
+
+No Ubuntu 20.04, é possível instalar o MySQL usando o repositório de pacotes APT. No momento em que este artigo foi escrito, a versão do MySQL disponível no repositório padrão do Ubuntu era a versão  8.0.19.
+
+Para instalar o MySQL, atualize o índice de pacotes em seu servidor se ainda não tiver feito isso:
+
+```
+sudo apt update
+```
+
+Depois disso, instale o pacote  `mysql-server`:
+
+```
+sudo apt install mysql-server
+```
+
+Isso instalará o MySQL, mas não solicitará que você defina uma senha ou que faça outras alterações de configuração. Como isso deixa sua instalação do MySQL não segura, abordaremos isso a seguir.
+
+### Passo 2 — Configurando o MySQL
+
+Se quiser novas instalações do MySQL, execute o script de segurança incluído do DBMS. Esse script modifica algumas das opções padrão menos seguras referentes, por exemplo, a logins root remotos e usuários de exemplo.
+
+Execute o script de segurança com o  `sudo`:
+
+```
+sudo mysql_secure_installation
+```
+Isso levará você através de uma série de prompts onde é possível fazer algumas alterações nas opções de segurança de sua instalação do MySQL. O primeiro prompt perguntará se você gostaria de definir o plug-in de validar senha, que pode ser usado para testar a força de sua senha do MySQL.
+
+Caso você escolha configurar o plug-in de validar senha, o script solicitará que você escolha um nível de validação de senha. O nível mais forte — que você seleciona ao digitar  `2`  — exigirá que sua senha tenha pelo menos oito caracteres de tamanho e inclua uma mistura de caracteres em maiúsculo, minúsculo, numérico e especial.
+
+A partir daí, pressione  `Y`  e, depois,  `ENTER`  para aceitar as configurações padrão para todas as perguntas subsequentes. Isso removerá alguns usuários anônimos e o banco de dados de teste, desativará os logins remotos para a raiz e carregará essas novas regras para que o MySQL respeite imediatamente as alterações que você fez.
+
+Note que, embora tenha definido uma senha para o usuário  **root**  do MySQL, este usuário não está configurado para autenticar-se com uma senha ao conectar-se ao shell do MySQL. Se quiser, é possível ajustar esta configuração seguindo o Passo 3.
+
+### Passo 3 — Ajustando a autenticação e os privilégios do usuário
+
+Nos sistemas Ubuntu que executam o MySQL 5.7 (e as versões posteriores), por padrão, o usuário  **root**  do MySQL é configurado para autenticar usando o plug-in  `auth_socket`  e não com uma senha. Isso permite maior segurança e a usabilidade na maioria dos casos, mas também pode complicar as coisas quando for necessário permitir que um programa externo (por exemplo, o phpMyAdmin) acesse o usuário.
+
+Para usar uma senha para conectar-se ao MySQL como  **root**, será necessário mudar seu método de autenticação de  `auth_socket`  para outro plug-in, como o  `caching_sha2_password`  ou o  `mysql_native_password`. Para fazer isso, abra o prompt do MySQL do seu terminal:
+
+```
+sudo mysql
+```
+
+Em seguida, verifique quais os métodos de autenticação cada conta de usuário do seu MySQL utilizam com o seguinte comando:
+
+```
+SELECT user,authentication_string,plugin,host FROM mysql.user;
+```
+
+```
+Output
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| user             | authentication_string                                                  | plugin                | host      |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+| debian-sys-maint | $A$005$lS|M#3K #XslZ.xXUq.crEqTjMvhgOIX7B/zki5DeLA3JB9nh0KwENtwQ4 | caching_sha2_password | localhost |
+| mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | localhost |
+| root             |                                                                        | auth_socket           | localhost |
++------------------+------------------------------------------------------------------------+-----------------------+-----------+
+5 rows in set (0.00 sec)
+```
+
+Neste exemplo, é possível ver que o usuário  **root**  autenticou usando o plug-in  `auth_socket.`  Para configurar a conta  **root**  para autenticar-se com uma senha, execute uma instrução  `ALTER USER`  para alterar qual plug-in de autenticação ela utiliza e configure uma nova senha.
+
+Certifique-se de alterar a  `password`  para uma senha forte de sua escolha. **Saiba que este comando mudará a senha  **root**  que você definiu no Passo 2:**
+
+```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';
+```
+
+Então, execute  `o comando FLUSH o qual`  diz para o servidor recarregar as tabelas de permissões e colocar as suas alterações em vigor:
+
+```
+FLUSH PRIVILEGES;
+exit;
+```
+**Nota: se tiver a autenticação por senha habilitada para root (como descrito nos parágrafos anteriores), será necessário usar um comando diferente para acessar o shell do MySQL. A sintaxe abaixo executará o seu cliente MySQL com privilégios regulares de usuário. Você somente terá privilégios de administrador dentro do banco de dados através desta autenticação:**
+
+```
+mysql -u root -p
+```
+
+### Passo 4 — Testando o MySQL
+
+Independentemente de como você o instalou, o MySQL já deve ter sido inicializado automaticamente. Para testar isso, verifique o status dele.
+
+```
+systemctl status mysql.service
 ```

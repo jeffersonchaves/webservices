@@ -10,7 +10,7 @@ CREATE TABLE `tb_temperature` (
   `temperature` double DEFAULT NULL,
   `timestamp` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-)
+);
 
 -- População do banco
 

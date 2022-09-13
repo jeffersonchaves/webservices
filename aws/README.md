@@ -61,6 +61,8 @@ Use o  `curl`  para baixar o link que copiou do site do Tomcat:
 
 ```
 curl -O paste_the_copied_link_here
+
+curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gzSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
 ```
 
 Vamos instalar o Tomcat no diretório  `/opt/tomcat`. Crie o diretório e, em seguida, extraia o arquivo nele com esses comandos:

@@ -1,3 +1,4 @@
+
 ## Criar instância
 
 **Permissão para {file}.pem key file:**
@@ -306,6 +307,8 @@ systemctl status mysql.service
 
 ## Implantando a Aplicação
 
+### Implantando a Aplicação
+
 O último passo é realizar o `deploy` da aplicação no Tomcat recém instalado. 
 
 Para tanto, é necessário realizar o **build** da aplicação e enviar a copia do arquivo gerado para o servidor **aws**.
@@ -313,3 +316,9 @@ Para tanto, é necessário realizar o **build** da aplicação e enviar a copia 
 ```
 scp -i "IFPR Iot.pem" ./../app.war ubuntu@ec2-18-228-85-221.sa-east-1.compute.amazonaws.com:/opt/tomcat/webapps
 ``` 
+
+### Configurando o Banco de Dados
+
+```
+https://github.com/jeffersonchaves/webservices/blob/main/database.sql
+```

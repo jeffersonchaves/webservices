@@ -2,7 +2,7 @@
 ## Criar instância
 
 **Permissão para {file}.pem key file:**
-chmod 600 {file}.pem
+chmod 400 {file}.pem
 
 **Testar conexão ssh**
 ssh -i "Ifpr-IoT-api-keys.pem" ubuntu@ec2-3-89-161-167.compute-1.amazonaws.com

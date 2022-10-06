@@ -319,6 +319,4 @@ scp -i "IFPR Iot.pem" ./../app.war ubuntu@ec2-18-228-85-221.sa-east-1.compute.am
 
 ### Configurando o Banco de Dados
 
-```
-[https://github.com/IoT-Integracao-de-Sistemas/webservices/blob/main/api-rest-java/database.sql
-](https://github.com/IoT-Integracao-de-Sistemas/webservices/blob/main/api-rest-java/database.sql)```
+https://github.com/IoT-Integracao-de-Sistemas/webservices/blob/main/api-rest-java/database.sql

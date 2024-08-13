@@ -10,7 +10,7 @@ ssh -i "Ifpr-IoT-api-keys.pem" ubuntu@ec2-3-89-161-167.compute-1.amazonaws.com
 
 **Servidor configurado!** As próximas etapas devem realizar as instalações e configurações necessárias para executar aplicações web usando Java.
 
-## instalar o Apache Tomcat 9
+## instalar o Apache Tomcat
 
 ### Passo 1 — Instalar o Java
 
@@ -48,7 +48,7 @@ Agora que nosso usuário  `tomcat`  está configurado, vamos baixar e instalar o
 
 ### Passo 3 — Instalar o Tomcat
 
-A melhor maneira de instalar o Tomcat 9 é baixando a última versão binária e, depois, configurá-la manualmente.
+A melhor maneira de instalar o Tomcat é baixando a última versão binária e, depois, configurá-la manualmente.
 
 Encontre a versão mais recente do Tomcat 9 na  [página de downloads do Tomcat](https://tomcat.apache.org/download-10.cgi). No momento em que este artigo foi escrito, a versão mais recente disponível era a  **10.1.28**. Porém, você deverá usar uma versão posterior, se estiver disponível. Na seção  **Binary Distributions**, na lista  **Core**, copie o link para o “tar.gz”. Na maioria dos navegadores, é possível fazer isso clicando com o botão direito no link e selecionando  **Copy Link Address**, ou uma opção semelhante.
 

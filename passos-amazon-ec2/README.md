@@ -115,7 +115,7 @@ O Tomcat precisa saber onde o Java está instalado. Normalmente, esse caminho é
 sudo update-java-alternatives -l
 ```
 ```
-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
 ```
 ```
 echo $JAVA_HOME
@@ -139,7 +139,7 @@ After=network.target
 [Service]
 Type=forking
 
-Environment=JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
+Environment=JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
 Environment=CATALINA_PID=/opt/tomcat/temp/tomcat.pid
 Environment=CATALINA_HOME=/opt/tomcat
 Environment=CATALINA_BASE=/opt/tomcat

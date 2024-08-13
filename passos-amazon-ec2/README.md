@@ -314,9 +314,5 @@ O último passo é realizar o `deploy` da aplicação no Tomcat recém instalado
 Para tanto, é necessário realizar o **build** da aplicação e enviar a copia do arquivo gerado para o servidor **aws**.
 
 ```
-scp -i "IFPR Iot.pem" ./../app.war ubuntu@ec2-18-228-85-221.sa-east-1.compute.amazonaws.com:/opt/tomcat/webapps
+scp -i "<nome_da_chave>.pem" <file>.war ubuntu@<endereco>.compute.amazonaws.com:/opt/tomcat/webapps
 ``` 
-
-### Configurando o Banco de Dados
-
-https://github.com/IoT-Integracao-de-Sistemas/webservices/blob/main/api-rest-java/database.sql

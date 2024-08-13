@@ -16,6 +16,7 @@ ESP8266WiFiMulti WiFiMulti;
 WiFiClient client;
 
 String base_url = "http://SEU_IP:8080/iot/rest/temperatures";
+
 char* ssid      = "REDE";
 char* password  = "SENHA";
 

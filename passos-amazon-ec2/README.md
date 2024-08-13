@@ -50,7 +50,7 @@ Agora que nosso usuário  `tomcat`  está configurado, vamos baixar e instalar o
 
 A melhor maneira de instalar o Tomcat 9 é baixando a última versão binária e, depois, configurá-la manualmente.
 
-Encontre a versão mais recente do Tomcat 9 na  [página de downloads do Tomcat 9](https://tomcat.apache.org/download-90.cgi). No momento em que este artigo foi escrito, a versão mais recente disponível era a  **9.0.10**. Porém, você deverá usar uma versão posterior, se estiver disponível. Na seção  **Binary Distributions**, na lista  **Core**, copie o link para o “tar.gz”. Na maioria dos navegadores, é possível fazer isso clicando com o botão direito no link e selecionando  **Copy Link Address**, ou uma opção semelhante.
+Encontre a versão mais recente do Tomcat 9 na  [página de downloads do Tomcat](https://tomcat.apache.org/download-10.cgi). No momento em que este artigo foi escrito, a versão mais recente disponível era a  **10.1.28**. Porém, você deverá usar uma versão posterior, se estiver disponível. Na seção  **Binary Distributions**, na lista  **Core**, copie o link para o “tar.gz”. Na maioria dos navegadores, é possível fazer isso clicando com o botão direito no link e selecionando  **Copy Link Address**, ou uma opção semelhante.
 
 Em seguida, mude para o diretório  `/tmp`, em seu servidor. Este é um bom diretório para baixar itens transitórios, como o Tomcat tarball, dos quais não iremos precisar depois que extrairmos o conteúdo do Tomcat:
 
@@ -61,9 +61,9 @@ cd /tmp
 Use o  `curl`  para baixar o link que copiou do site do Tomcat:
 
 ```
-curl -O paste_the_copied_link_here
+curl -O <paste_the_copied_link_here>
 
-curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.69/bin/apache-tomcat-9.0.69.tar.gz
+curl -O https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.28/bin/apache-tomcat-10.1.28.tar.gz
 ```
 
 Vamos instalar o Tomcat no diretório  `/opt/tomcat`. Crie o diretório e, em seguida, extraia o arquivo nele com esses comandos:

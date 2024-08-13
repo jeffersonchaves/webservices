@@ -282,7 +282,7 @@ Neste exemplo, é possível ver que o usuário  **root**  autenticou usando o pl
 Certifique-se de alterar a  `password`  para uma senha forte de sua escolha. **Saiba que este comando mudará a senha  **root**  que você definiu no Passo 2:**
 
 ```
-ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'bancodedados';
 ```
 
 Então, execute  `o comando FLUSH o qual`  diz para o servidor recarregar as tabelas de permissões e colocar as suas alterações em vigor:

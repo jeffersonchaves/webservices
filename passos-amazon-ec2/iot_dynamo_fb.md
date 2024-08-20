@@ -32,25 +32,25 @@ Nesta etapa, você usará a consulta de regras para formatar os dados dos dispos
 
 Um exemplo de carga útil de mensagem recebida de um dispositivo de sensor climático tem o seguinte aspecto:
 ```
-    {
-      "temperature": 28,
-      "humidity": 80,
-      "barometer": 1013,
-      "wind": {
-        "velocity": 22,
-        "bearing": 255
-      }
-    }
+{
+   "temperature":28,
+   "humidity":80,
+   "barometer":1013,
+   "wind":{
+      "velocity":22,
+      "bearing":255
+   }
+}
 ```
 Para a entrada do banco de dados, você usará a instrução de consulta de regra para nivelar a estrutura da carga útil da mensagem para ficar dessa forma:
 ```
-    {
-      "temperature": 28,
-      "humidity": 80,
-      "barometer": 1013,
-      "wind_velocity": 22,
-      "wind_bearing": 255
-    }
+{
+   "temperature":28,
+   "humidity":80,
+   "barometer":1013,
+   "wind_velocity":22,
+   "wind_bearing":255
+}
 ```
 Nessa regra, você também usará alguns Modelos de substituição. Os modelos de substituição são expressões que permitem inserir valores dinâmicos de funções e dados de mensagens.
 
@@ -69,7 +69,7 @@ Nessa regra, você também usará alguns Modelos de substituição. Os modelos d
  a. Na versão SQL, selecione2016-03-23.
  b. Na caixa de edição da instrução SQL, insira a instrução:
 ```
-    SELECT temperature, humidity, barometer, wind.velocity as wind_velocity, wind.bearing as wind_bearing, FROM 'device/+/data'
+SELECT temperature, humidity, barometer, wind.velocity as wind_velocity, wind.bearing as wind_bearing, FROM 'device/+/data'
 ```
 Esta declaração:
 
@@ -117,15 +117,15 @@ Abra o cliente MQTT no AWS IoT console em uma nova janela. Isso permitirá que v
     c. Em **Carga útil da mensagem**, insira os seguintes dados de exemplo.
 
 ```
-    {
-      "temperature": 28,
-      "humidity": 80,
-      "barometer": 1013,
-      "wind": {
-        "velocity": 22,
-        "bearing": 255
-      }
-    }
+{
+   "temperature":28,
+   "humidity":80,
+   "barometer":1013,
+   "wind":{
+      "velocity":22,
+      "bearing":255
+   }
+}
 ```
    d. Para publicar a mensagem MQTT, escolha Publicar.
    e. Agora, no cliente MQTT, escolha Assinar um tópico. Na coluna Assinar, escolha a assinatura device/+/data. Confirme se os dados de amostra da etapa anterior aparecem.

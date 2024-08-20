@@ -31,7 +31,7 @@ Você definirá **device_data** posteriormente, quando configurar a ação da re
 Nesta etapa, você usará a consulta de regras para formatar os dados dos dispositivos imaginários de sensores climáticos para gravar na tabela do banco de dados.
 
 Um exemplo de carga útil de mensagem recebida de um dispositivo de sensor climático tem o seguinte aspecto:
-
+```
     {
       "temperature": 28,
       "humidity": 80,
@@ -41,9 +41,9 @@ Um exemplo de carga útil de mensagem recebida de um dispositivo de sensor clim�
         "bearing": 255
       }
     }
-
+```
 Para a entrada do banco de dados, você usará a instrução de consulta de regra para nivelar a estrutura da carga útil da mensagem para ficar dessa forma:
-
+```
     {
       "temperature": 28,
       "humidity": 80,
@@ -51,7 +51,7 @@ Para a entrada do banco de dados, você usará a instrução de consulta de regr
       "wind_velocity": 22,
       "wind_bearing": 255
     }
-
+```
 Nessa regra, você também usará alguns Modelos de substituição. Os modelos de substituição são expressões que permitem inserir valores dinâmicos de funções e dados de mensagens.
 
 ### Para criar a AWS IoT regra para enviar dados para a tabela do DynamoDB
@@ -68,9 +68,9 @@ Nessa regra, você também usará alguns Modelos de substituição. Os modelos d
  5. Em instrução SQL:
  a. Na versão SQL, selecione2016-03-23.
  b. Na caixa de edição da instrução SQL, insira a instrução:
-
+```
     SELECT temperature, humidity, barometer, wind.velocity as wind_velocity, wind.bearing as wind_bearing, FROM 'device/+/data'
-
+```
 Esta declaração:
 
  - Recebe mensagens MQTT com um tópico que corresponda ao filtro de tópicos device/+/data.
@@ -116,7 +116,7 @@ Abra o cliente MQTT no AWS IoT console em uma nova janela. Isso permitirá que v
     b. Em **Nome do tópico**, insira um nome para o tópico, device/22/data.
     c. Em **Carga útil da mensagem**, insira os seguintes dados de exemplo.
 
-
+```
     {
       "temperature": 28,
       "humidity": 80,
@@ -126,7 +126,7 @@ Abra o cliente MQTT no AWS IoT console em uma nova janela. Isso permitirá que v
         "bearing": 255
       }
     }
-
+```
    d. Para publicar a mensagem MQTT, escolha Publicar.
    e. Agora, no cliente MQTT, escolha Assinar um tópico. Na coluna Assinar, escolha a assinatura device/+/data. Confirme se os dados de amostra da etapa anterior aparecem.
 
